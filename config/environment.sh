@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # korvaa tämä omalla käyttäjätunnuksellasi
