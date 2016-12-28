@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kolera-allas - Helsinki</h1>
+
+<p>
+    <a href="muokkaaKohde" class="btn-primary">Muokkaa</a>
+    <a href="#" class="btn-danger">Poista</a>
+</p>
+<p>
+    <a href="#" class="btn-success">Lisää näytteenottopaikka</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Näytteenottopaikka</th>
+            <th>Koordinaatit</th>
+            <th>Ohje</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><a href="paikka">Koilliskulma</a></td>
+            <td>60.16741499881379/24.953104108572006</td>
+            <td>Jää sporasta Kauppatorilla</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

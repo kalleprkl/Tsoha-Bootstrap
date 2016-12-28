@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa kohdetta Kolera-allas - Koilliskulma - 24.12.2016</h1>
+
+<form>
+    <div class="form-group">
+        <label>Päivämäärä</label>
+        <input class="form-control" value="24.12.2016" type="text">
+    </div>
+    <div class="form-group">
+        <label>Väri</label>
+        <input class="form-control" value="Ruma" type="text">
+    </div>
+    <div class="form-group">
+        <label>Haju</label>
+        <input class="form-control" value="Paha" type="text">
+    </div>
+    <div class="form-group">
+        <label>Sameus</label>
+        <input class="form-control" value="Samea" type="text">
+    </div>
+    <div class="form-group">
+        <label>Lämpötila</label>
+        <input class="form-control" value="+1" type="text">
+    </div>
+    <div class="form-group">
+        <label>ph</label>
+        <input class="form-control" value="3" type="text">
+    </div>
+    <div class="form-group">
+        <label>Muuta</label>
+        <input class="form-control" value="Ei näy lokkeja" type="text">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}
