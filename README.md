@@ -5,7 +5,7 @@ Huom! Työn aihe vaihtunut!
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://perkoila.users.cs.helsinki.fi/tsoha/)
-* [Linkki dokumentaatiooni](https://github.com/kalleprkl/Tsoha-Bootstrap/blob/master/doc/Lentomatkustajan ostoskori.pdf)
+* [Linkki dokumentaatiooni](https://github.com/kalleprkl/Tsoha-Bootstrap/blob/master/doc/Tutkimusaineistoin_keräys_dokumentaatio.pdf)
 
 Käyttöliittymän hahmotelmia
 
