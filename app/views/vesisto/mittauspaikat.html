@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{vesisto.nimi}} - {{vesisto.paikkakunta}}</h1>
+
+<p>
+    <a href="muokkaaKohde" class="btn-primary">Muokkaa</a>
+    <a href="#" class="btn-danger">Poista</a>
+</p>
+<p>
+    <a href="#" class="btn-success">Lisää näytteenottopaikka</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Näytteenottopaikka</th>
+            <th>Koordinaatit</th>
+            <th>Ohje</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for mittauspaikka in mittauspaikat %}
+        <tr>
+            <td><a href="paikka">{{mittauspaikka.nimi}}</a></td>
+            <td>{{mittauspaikka.koordinaatit}}</td>
+            <td>{{mittauspaikka.lahestymisohje}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

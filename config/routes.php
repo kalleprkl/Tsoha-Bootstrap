@@ -1,46 +1,62 @@
 <?php
 
+$routes->post('/vesistot', function(){
+  VesistoController::store();
+});
+
+$routes->get('/vesistot', function() {
+    VesistoController::index();
+});
+
+$routes->get('/vesistot/uusi', function() {
+    VesistoController::lomake();
+});
+
+$routes->get('/vesistot/:id', function($id){
+  VesistoController::show($id);
+});
+
 $routes->get('/', function() {
-HelloWorldController::index();
+    VesistoController::index();
 });
 
 $routes->get('/hiekkalaatikko', function() {
-HelloWorldController::sandbox();
+    HelloWorldController::sandbox();
 });
 
 $routes->get('/kohteet', function() {
-HelloWorldController::kohteet();
+    HelloWorldController::kohteet();
 });
 
 $routes->get('/kohde', function() {
-HelloWorldController::kohde();
+    HelloWorldController::kohde();
 });
 
 $routes->get('/paikka', function() {
-HelloWorldController::paikka();
+    HelloWorldController::paikka();
 });
 
 $routes->get('/raportti', function() {
-HelloWorldController::raportti();
+    HelloWorldController::raportti();
 });
 
 $routes->get('/tyyppi', function() {
-HelloWorldController::tyyppi();
+    HelloWorldController::tyyppi();
 });
 
 $routes->get('/muokkaaKohde', function() {
-HelloWorldController::muokkaaKohde();
+    HelloWorldController::muokkaaKohde();
 });
 
 $routes->get('/muokkaaPaikka', function() {
-HelloWorldController::muokkaaPaikka();
+    HelloWorldController::muokkaaPaikka();
 });
 
 $routes->get('/muokkaaRaportti', function() {
-HelloWorldController::muokkaaRaportti();
+    HelloWorldController::muokkaaRaportti();
 });
 
 $routes->get('/muokkaaNayte', function() {
-HelloWorldController::muokkaaNayte();
+    HelloWorldController::muokkaaNayte();
 });
 

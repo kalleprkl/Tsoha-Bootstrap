@@ -3,7 +3,7 @@ CREATE TABLE Tutkija (
 	nimi varchar(50) NOT NULL
 );
 
-CREATE TABLE Kohde (
+CREATE TABLE Vesisto (
 	kohde_id SERIAL PRIMARY KEY,
 	nimi TEXT,
 	paikkakunta TEXT
@@ -11,7 +11,7 @@ CREATE TABLE Kohde (
 
 CREATE TABLE Naytteenottopaikka (
 	koordinaatit TEXT PRIMARY KEY,
-	kohde INTEGER REFERENCES Kohde(kohde_id),
+	kohde INTEGER REFERENCES Vesisto(kohde_id),
 	nimi TEXT,
 	lahestymisohje	TEXT
 );
