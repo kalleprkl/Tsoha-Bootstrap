@@ -2,10 +2,11 @@
 
 class Vesisto extends BaseModel {
 
-    public $kohde_id, $nimi, $paikkakunta;
+    public $kohde_id, $nimi, $paikkakunta, $validators;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_paikkakunta');
     }
 
     public static function all() {
@@ -45,6 +46,22 @@ class Vesisto extends BaseModel {
         $query->execute(array('nimi' => $this->nimi, 'paikkakunta' => $this->paikkakunta));
         $row = $query->fetch();
         $this->kohde_id = $row['kohde_id'];
+    }
+
+    public function validate_nimi() {
+        $errors = array();
+        if (count($parent::validate_string_not_empty($this->nimi)) > 0) {
+            $errors[] = 'Nimi ei voi olla tyhjä';
+        }
+        return $errors;
+    }
+
+    public function validate_paikkakunta() {
+        $errors = array();
+        if (parent::validate_string_not_empty($this->paikkakunta) > 1) {
+            $errors[] = 'Paikkakunta ei voi olla tyhjä';
+        }
+        return $errors;
     }
 
 }

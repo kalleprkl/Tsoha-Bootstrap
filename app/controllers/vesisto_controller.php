@@ -32,5 +32,6 @@ class VesistoController extends BaseController {
         // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
         Redirect::to('/vesistot/' . $uusi->kohde_id, array('message' => 'Uusi vesistö lisätty'));
     }
-
+    
+    
 }

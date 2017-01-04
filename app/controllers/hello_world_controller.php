@@ -9,11 +9,9 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $eka = Raportti::find(1);
-        $raportit = Raportti::all();
-
-        Kint::dump($raportit);
-        Kint::dump($eka);
+        $jortsu = new Vesisto(array('nimi' => '', 'paikkakunta' => ''));
+        $errors = $jortsu->errors();
+        Kint::dump($errors);
     }
 
     public static function kohteet() {

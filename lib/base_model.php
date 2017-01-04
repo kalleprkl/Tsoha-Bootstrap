@@ -21,9 +21,17 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+          $errors = array_merge($errors, $this->{$validator}());
       }
 
       return $errors;
     }
-
+    
+    public function validate_string_not_empty($string) {
+        $errors = array();
+        if (strlen($string) == 0) {
+            $errors[] = 'tyhjä merkkijono'; 
+        }
+        return $errors;
+    }
   }
