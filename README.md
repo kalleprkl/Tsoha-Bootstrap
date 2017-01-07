@@ -5,7 +5,14 @@ Huom! Työn aihe vaihtunut!
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://perkoila.users.cs.helsinki.fi/tsoha/)
+Käyttäjätunnus: heebo
+Salasana: salis
 * [Linkki dokumentaatiooni](https://github.com/kalleprkl/Tsoha-Bootstrap/blob/master/doc/Tutkimusaineistoin_keräys_dokumentaatio.pdf)
+
+
+## Työn aihe
+
+[Tutkimusaineiston keräys](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tutkimusaineston_kerays.html)
 
 Käyttöliittymän hahmotelmia
 
@@ -18,8 +25,3 @@ Käyttöliittymän hahmotelmia
 [Raportin muokkaus](http://perkoila.users.cs.helsinki.fi/tsoha/muokkaaRaportti)
 [Näytteen muokkaus](http://perkoila.users.cs.helsinki.fi/tsoha/muokkaaNayte)
 [Tutkijan raporttien listaus](http://perkoila.users.cs.helsinki.fi/tsoha/tyyppi)
-
-
-## Työn aihe
-
-[Tutkimusaineiston keräys](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tutkimusaineston_kerays.html)

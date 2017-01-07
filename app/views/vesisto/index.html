@@ -2,6 +2,12 @@
 {% block content %}
 <h1>Kohteet</h1>
 
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
 <p>
     <a href="{{base_path}}/vesistot/uusi" class="btn btn-success">Lisää kohde</a>
 </p>

@@ -1,4 +1,4 @@
-INSERT INTO Tutkija (nimi) VALUES ('Heebo Heebolainen');
+INSERT INTO Tutkija (nimi, kayttajatunnus, salasana) VALUES ('Heebo Heebolainen', 'heebo', 'salis');
 
 INSERT INTO Vesisto (nimi, paikkakunta) VALUES ('Kolera-allas', 'Helsinki');
 

@@ -1,5 +1,13 @@
  <?php
-
+ 
+$routes->get('/login', function() {
+    TutkijaController::login();
+});
+ 
+ $routes->post('/login', function(){
+  TutkijaController::kasittele();
+});
+ 
 $routes->post('/vesistot', function(){
   VesistoController::store();
 });
@@ -16,8 +24,20 @@ $routes->get('/vesistot/:id', function($id){
   VesistoController::show($id);
 });
 
+ $routes->get('/vesistot/:id/muokkaa', function($id){
+  VesistoController::muokkaa($id);
+});
+
+$routes->post('/vesistot/:id/paivita', function($id){
+  VesistoController::paivita($id);
+});
+
+$routes->post('/vesistot/:id/poista', function($id){
+    VesistoController::poista($id);
+});
+
 $routes->get('/', function() {
-    VesistoController::index();
+    TutkijaController::login();
 });
 
 $routes->get('/hiekkalaatikko', function() {

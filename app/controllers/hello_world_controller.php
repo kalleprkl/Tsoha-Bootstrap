@@ -9,7 +9,7 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $jortsu = new Vesisto(array('nimi' => '', 'paikkakunta' => ''));
+        $jortsu = new Vesisto(array('nimi' => 'kekk', 'paikkakunta' => 'kokkola'));
         $errors = $jortsu->errors();
         Kint::dump($errors);
     }

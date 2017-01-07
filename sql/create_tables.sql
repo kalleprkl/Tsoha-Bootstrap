@@ -1,6 +1,8 @@
 CREATE TABLE Tutkija (
 	tutkija_id SERIAL PRIMARY KEY,
-	nimi varchar(50) NOT NULL
+	nimi varchar(50) NOT NULL,
+	kayttajatunnus text,
+	salasana text
 );
 
 CREATE TABLE Vesisto (

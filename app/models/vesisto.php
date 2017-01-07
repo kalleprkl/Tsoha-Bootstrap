@@ -47,10 +47,20 @@ class Vesisto extends BaseModel {
         $row = $query->fetch();
         $this->kohde_id = $row['kohde_id'];
     }
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Vesisto SET nimi = :nimi, paikkakunta = :paikkakunta WHERE kohde_id = :kohde_id');
+        $query->execute(array('kohde_id' => $this->kohde_id, 'nimi' => $this->nimi, 'paikkakunta' => $this->paikkakunta));
+    }
+    
+    public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Vesisto WHERE kohde_id = :kohde_id');
+        $query->execute(array('kohde_id' => $this->kohde_id));
+    }
 
     public function validate_nimi() {
         $errors = array();
-        if (count($parent::validate_string_not_empty($this->nimi)) > 0) {
+        if (count(parent::validate_string_not_empty($this->nimi)) > 0) {
             $errors[] = 'Nimi ei voi olla tyhjä';
         }
         return $errors;
@@ -58,7 +68,7 @@ class Vesisto extends BaseModel {
 
     public function validate_paikkakunta() {
         $errors = array();
-        if (parent::validate_string_not_empty($this->paikkakunta) > 1) {
+        if (count(parent::validate_string_not_empty($this->paikkakunta)) > 0) {
             $errors[] = 'Paikkakunta ei voi olla tyhjä';
         }
         return $errors;
