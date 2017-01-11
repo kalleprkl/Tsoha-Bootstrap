@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{mittauspaikka.nimi}} - {{vesisto.nimi}} - {{vesisto.paikkakunta}}</h1>
+
+<p>
+    <form method="get" action="{{base_path}}/mittauspaikat/{{mittauspaikka.koordinaatit}}/muokkaa" style="display: inline-block;">
+        <button type="submit" class="btn btn-primary">Muokkaa</button>
+    </form>
+    <form method="post" action="{{base_path}}/mittauspaikat/{{mittauspaikka.koordinaatit}}/poista" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger">Poista</button>
+    </form>
+</p>
+<p>
+    <a href="#" class="btn btn-success">Lisää raportti</a>
+</p>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Päivämäärä</th>
+            <th>Näytteenottaja</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for raportti in raportit%}
+        <tr>
+            <td><a href="{{base_path}}/raportit/{{raportti.tutkimus_id}}">{{raportti.pvm}}</a></td>
+            <td><a href="#">{{raportti.tutkija}}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

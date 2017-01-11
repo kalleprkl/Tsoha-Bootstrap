@@ -7,7 +7,7 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://perkoila.users.cs.helsinki.fi/tsoha/)
 Käyttäjätunnus: heebo
 Salasana: salis
-* [Linkki dokumentaatiooni](https://github.com/kalleprkl/Tsoha-Bootstrap/blob/master/doc/Tutkimusaineistoin_keräys_dokumentaatio.pdf)
+* [Linkki dokumentaatiooni](https://github.com/kalleprkl/Tsoha-Bootstrap/blob/master/doc/Tutkimusaineiston_keräys_dokumentaatio.pdf)
 
 
 ## Työn aihe

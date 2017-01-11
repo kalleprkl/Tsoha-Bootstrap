@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa mittauspaikan {{mittauspaikka.nimi}} tietoja</h1>
+  
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" action="{{base_path}}/mittauspaikat/{{mittauspaikka.koordinaatit}}/paivita">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input name="nimi" class="form-control" value="{{mittauspaikka.nimi}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Lähestymisohje</label>
+        <input name="lahestymisohje" class="form-control" value="{{mittauspaikka.lahestymisohje}}" type="text">
+    </div>
+    <div>
+        <input name="kohde" value="{{mittauspaikka.kohde}}" type="hidden">
+    </div>   
+    <div>
+        <input name="koordinaatit" value="{{mittauspaikka.koordinaatit}}" type="hidden">
+    </div> 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
+{% endblock %}

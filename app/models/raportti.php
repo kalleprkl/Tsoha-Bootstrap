@@ -55,25 +55,26 @@ class Raportti extends BaseModel {
     }
     
     public static function findBySijainti($koordinaatit) {
-        $query = DB::connection()->prepare('SELECT * FROM Kenttatutkimusraportti WHERE sijainti = :koordinaatit LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Kenttatutkimusraportti JOIN Tutkija ON Kenttatutkimusraportti.tutkija = Tutkija.tutkija_id WHERE sijainti = :koordinaatit');
         $query->execute(array('koordinaatit' => $koordinaatit));
-        $row = $query->fetch();
+        $rows = $query->fetchAll();
+        $raportit = array();
 
-        if ($row) {
-            $raportti = new Raportti(array(
-            'tutkimus_id' => $row['tutkimus_id'],
-            'tutkija' => $row['tutkija'],
-            'sijainti' => $row['sijainti'],
-            'pvm' => $row['pvm'],
-            'vari' => $row['vari'],
-            'haju' => $row['haju'],
-            'sameus' => $row['sameus'],
-            'lampotila' => $row['lampotila'],
-            'ph' => $row['ph'],
-            'muuta' => $row['muuta']
+        foreach ($rows as $row) {
+            $raportit[] = new Raportti(array(
+                'tutkimus_id' => $row['tutkimus_id'],
+                'tutkija' => $row['nimi'],
+                'sijainti' => $row['sijainti'],
+                'pvm' => $row['pvm'],
+                'vari' => $row['vari'],
+                'haju' => $row['haju'],
+                'sameus' => $row['sameus'],
+                'lampotila' => $row['lampotila'],
+                'ph' => $row['ph'],
+                'muuta' => $row['muuta']
             ));
-            return $raportti;
+            
         }
-        return null;
+        return $raportit;
     }
 }

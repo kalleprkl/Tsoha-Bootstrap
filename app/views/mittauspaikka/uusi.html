@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lisää uusi mittauspaikka</h1>
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/mittauspaikat">
+    <div class="form-group">
+        <label>Koordinaatit</label>
+        <input name="koordinaatit" class="form-control" value="{{attributes.koordinaatit}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Nimi</label>
+        <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Lähestymisohje</label>
+        <input name="lahestymisohje" class="form-control" value="{{attributes.lahestymisohje}}" type="text">
+    </div>
+    <div>
+        <input name="kohde" value="{{vesisto.kohde_id}}" type="hidden">
+    </div>   
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

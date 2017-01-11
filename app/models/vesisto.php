@@ -63,6 +63,9 @@ class Vesisto extends BaseModel {
         if (count(parent::validate_string_not_empty($this->nimi)) > 0) {
             $errors[] = 'Nimi ei voi olla tyhjä';
         }
+        if (count(parent::validate_string_length($this->nimi, 50)) > 0) {
+            $errors[] = 'Nimi voi olla korkeintaan 50 merkkiä pitkä';
+        }
         return $errors;
     }
 
@@ -70,6 +73,9 @@ class Vesisto extends BaseModel {
         $errors = array();
         if (count(parent::validate_string_not_empty($this->paikkakunta)) > 0) {
             $errors[] = 'Paikkakunta ei voi olla tyhjä';
+        }
+        if (count(parent::validate_string_length($this->paikkakunta, 50)) > 0) {
+            $errors[] = 'Paikkakunta voi olla korkeintaan 50 merkkiä pitkä';
         }
         return $errors;
     }
