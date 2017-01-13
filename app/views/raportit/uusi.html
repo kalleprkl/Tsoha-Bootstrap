@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lisää uusi raportti mitauspaikkaan {{mittauspaikka.nimi}}</h1>
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/raportit">
+    <div class="form-group">
+        <label>Päivämäärä</label>
+        <input name="pvm" class="form-control" value="{{attributes.pvm}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Väri</label>
+        <input name="vari" class="form-control" value="{{attributes.vari}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Haju</label>
+        <input name="haju" class="form-control" value="{{attributes.haju}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Sameus</label>
+        <input name="sameus" class="form-control" value="{{attributes.sameus}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Lämpötila</label>
+        <input name="lampotila" class="form-control" value="{{attributes.lampotila}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>pH</label>
+        <input name="ph" class="form-control" value="{{attributes.ph}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Muuta</label>
+        <input name="muuta" class="form-control" value="{{attributes.muuta}}" type="text">
+    </div>
+    <div>
+        <input name="tutkija_id" value="{{tutkija.tutkija_id}}" type="hidden">
+    </div>   
+    <div>
+        <input name="koordinaatit" value="{{mittauspaikka.koordinaatit}}" type="hidden">
+    </div>   
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

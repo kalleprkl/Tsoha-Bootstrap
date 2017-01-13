@@ -3,6 +3,29 @@
 function check_logged_in(){
   BaseController::check_logged_in();
 }
+$routes->post('/raportit/:tutkimus_id/poista', 'check_logged_in', function($tutkimus_id){
+    RaporttiController::poista($tutkimus_id);
+});
+
+$routes->post('/raportit/:tutkimus_id/paivita', 'check_logged_in', function($tutkimus_id){
+  RaporttiController::paivita($tutkimus_id);
+});
+
+$routes->get('/raportit/:tutkimus_id/muokkaa', 'check_logged_in', function($tutkimus_id){
+  RaporttiController::muokkaa($tutkimus_id);
+});
+
+$routes->get('/tutkijat/:tutkija_id', 'check_logged_in', function($tutkija_id){
+  RaporttiController::listaus_by_tutkija($tutkija_id);
+});
+
+$routes->post('/raportit', 'check_logged_in', function(){
+  RaporttiController::tallenna();
+});
+
+$routes->get('/raportit/:koordinaatit/uusi', 'check_logged_in', function($koordinaatit){
+  RaporttiController::uusi($koordinaatit);
+});
 
 $routes->get('/raportit/:tutkimus_id', 'check_logged_in', function($tutkimus_id){
     RaporttiController::nayta($tutkimus_id);

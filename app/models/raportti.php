@@ -38,16 +38,16 @@ class Raportti extends BaseModel {
 
         if ($row) {
             $raportti = new Raportti(array(
-            'tutkimus_id' => $row['tutkimus_id'],
-            'tutkija' => $row['tutkija'],
-            'sijainti' => $row['sijainti'],
-            'pvm' => $row['pvm'],
-            'vari' => $row['vari'],
-            'haju' => $row['haju'],
-            'sameus' => $row['sameus'],
-            'lampotila' => $row['lampotila'],
-            'ph' => $row['ph'],
-            'muuta' => $row['muuta']
+                'tutkimus_id' => $row['tutkimus_id'],
+                'tutkija' => $row['tutkija'],
+                'sijainti' => $row['sijainti'],
+                'pvm' => $row['pvm'],
+                'vari' => $row['vari'],
+                'haju' => $row['haju'],
+                'sameus' => $row['sameus'],
+                'lampotila' => $row['lampotila'],
+                'ph' => $row['ph'],
+                'muuta' => $row['muuta']
             ));
             return $raportti;
         }
@@ -60,21 +60,59 @@ class Raportti extends BaseModel {
         $rows = $query->fetchAll();
         $raportit = array();
 
-        foreach ($rows as $row) {
-            $raportit[] = new Raportti(array(
-                'tutkimus_id' => $row['tutkimus_id'],
-                'tutkija' => $row['nimi'],
-                'sijainti' => $row['sijainti'],
-                'pvm' => $row['pvm'],
-                'vari' => $row['vari'],
-                'haju' => $row['haju'],
-                'sameus' => $row['sameus'],
-                'lampotila' => $row['lampotila'],
-                'ph' => $row['ph'],
-                'muuta' => $row['muuta']
-            ));
-            
-        }
-        return $raportit;
+//        foreach ($rows as $row) {
+//            $raportit[] = new Raportti(array(
+//                'tutkimus_id' => $row['tutkimus_id'],
+//                'tutkija' => $row['tutkija_id'],
+//                'sijainti' => $row['sijainti'],
+//                'pvm' => $row['pvm'],
+//                'vari' => $row['vari'],
+//                'haju' => $row['haju'],
+//                'sameus' => $row['sameus'],
+//                'lampotila' => $row['lampotila'],
+//                'ph' => $row['ph'],
+//                'muuta' => $row['muuta']
+//            ));
+//        }
+        return $rows;
+    }
+
+    public static function findByTutkija($tutkija_id) {
+        $query = DB::connection()->prepare('SELECT tutkimus_id, pvm, Naytteenottopaikka.nimi AS paikka, paikkakunta, Vesisto.nimi AS vesi '
+                . '                             FROM Kenttatutkimusraportti '
+                . '                             JOIN Naytteenottopaikka ON Kenttatutkimusraportti.sijainti = Naytteenottopaikka.koordinaatit '
+                . '                             JOIN Vesisto ON Naytteenottopaikka.kohde = Vesisto.kohde_id '
+                . '                         WHERE tutkija = :tutkija_id');
+        $query->execute(array('tutkija_id' => $tutkija_id));
+        $rows = $query->fetchAll();
+        
+        return $rows;
+    }
+
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Kenttatutkimusraportti (tutkija, sijainti, pvm, vari, haju, sameus, lampotila, ph, muuta) VALUES (:tutkija, :sijainti, :pvm, :vari, :haju, :sameus, :lampotila, :ph, :muuta) RETURNING tutkimus_id');
+        $query->execute(array(
+            'tutkija' => $this->tutkija,
+            'sijainti' => $this->sijainti,
+            'pvm' => $this->pvm,
+            'vari' => $this->vari,
+            'haju' => $this->haju,
+            'sameus' => $this->sameus,
+            'lampotila' => $this->lampotila,
+            'ph' => $this->ph,
+            'muuta' => $this->muuta
+        ));
+        $row = $query->fetch();
+        $this->tutkimus_id = $row['tutkimus_id'];
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Kenttatutkimusraportti SET pvm = :pvm, vari = :vari, haju = :haju, sameus = :sameus, lampotila = :lampotila, ph = :ph, muuta = :muuta WHERE tutkimus_id = :tutkimus_id');
+        $query->execute(array('pvm' => $this->pvm, 'vari' => $this->vari, 'haju' => $this->haju, 'sameus' => $this->sameus, 'lampotila' => $this->lampotila, 'ph' => $this->ph, 'muuta' => $this->muuta, 'tutkimus_id' => $this->tutkimus_id));
+    }
+    
+    public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Kenttatutkimusraportti WHERE tutkimus_id = :tutkimus_id');
+        $query->execute(array('tutkimus_id' => $this->tutkimus_id));
     }
 }

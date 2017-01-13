@@ -13,27 +13,27 @@ CREATE TABLE Vesisto (
 
 CREATE TABLE Naytteenottopaikka (
 	koordinaatit TEXT PRIMARY KEY,
-	kohde INTEGER REFERENCES Vesisto(kohde_id),
+	kohde INTEGER REFERENCES Vesisto(kohde_id) ON DELETE CASCADE,
 	nimi TEXT,
 	lahestymisohje	TEXT
 );
 
 CREATE TABLE Kenttatutkimusraportti (
 	tutkimus_id SERIAL PRIMARY KEY,
-	tutkija 	INTEGER REFERENCES Tutkija(tutkija_id),
-	sijainti TEXT REFERENCES Naytteenottopaikka(koordinaatit),
+	tutkija 	INTEGER REFERENCES Tutkija(tutkija_id) ON DELETE CASCADE,
+	sijainti TEXT REFERENCES Naytteenottopaikka(koordinaatit) ON DELETE CASCADE,
 	pvm DATE,
 	vari TEXT,
 	haju	TEXT,
 	sameus TEXT,
 	lampotila DECIMAL,
-	pH DECIMAL,
+	pH DECIMAL, 
 	muuta TEXT
 );
 
 CREATE TABLE Nayte (
 	nayte_id SERIAL PRIMARY KEY,
-	tutkimus INTEGER REFERENCES Kenttatutkimusraportti(tutkimus_id),
+	tutkimus INTEGER REFERENCES Kenttatutkimusraportti(tutkimus_id) ON DELETE CASCADE,
 	tulokset TEXT
 );
 
