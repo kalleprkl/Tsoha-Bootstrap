@@ -3,6 +3,27 @@
 function check_logged_in(){
   BaseController::check_logged_in();
 }
+
+$routes->post('/naytteet/:nayte_id/paivita', 'check_logged_in', function($nayte_id){
+  NayteController::paivita($nayte_id);
+});
+
+$routes->get('/naytteet/:nayte_id/muokkaa', 'check_logged_in', function($nayte_id){
+  NayteController::muokkaa($nayte_id);
+});
+
+$routes->post('/naytteet/:nayte_id/poista', 'check_logged_in', function($nayte_id){
+    NayteController::poista($nayte_id);
+});
+
+$routes->post('/naytteet', 'check_logged_in', function(){
+  NayteController::tallenna();
+});
+
+$routes->get('/raportit/:tutkimus_id/lisaa', 'check_logged_in', function($tutkimus_id){
+  NayteController::uusi($tutkimus_id);
+});
+
 $routes->post('/raportit/:tutkimus_id/poista', 'check_logged_in', function($tutkimus_id){
     RaporttiController::poista($tutkimus_id);
 });

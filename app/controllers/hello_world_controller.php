@@ -9,9 +9,15 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $jortsu = new Vesisto(array('nimi' => 'kekk', 'paikkakunta' => 'kokkola'));
-        $errors = $jortsu->errors();
-        Kint::dump($errors);
+//        $regex = '/[+-][01][0-8][0-9][.][0-9]{5}[,]\h[+-][01][0-8][0-9][.][0-9]{5}/';
+//        $subject = '+032.30642, -122.61458';
+//        if (preg_match($regex, $subject)) {
+//            echo 'yeah';
+//        }
+        $string = 'N91.16738E181.95306';
+        echo substr($string, 4, 5);
+        echo '<br>';
+        echo substr($string, 14, 5);
     }
 
     public static function kohteet() {

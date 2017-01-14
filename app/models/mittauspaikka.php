@@ -51,17 +51,20 @@ class Mittauspaikka extends BaseModel {
     
     public function validate_koordinaatit() {
         $errors = array();
-        if (count(parent::validate_string_not_empty($this->koordinaatit)) > 0) {
-            $errors[] = 'Koordinaatit ei voi olla tyhjä';
+        //N91.16738E181.95306
+        if (!preg_match('/[NS][0-9][0-9][.][0-9]{5}[WE][01][0-8][0-9][.][0-9]{5}/', $this->koordinaatit)) {
+            $errors[] = 'Anna koordinaatit halutussa muodossa';
         }
-        if (count(parent::validate_string_length($this->koordinaatit, 30)) > 0) {
-            $errors[] = 'Koordinaatit voi olla korkeintaan 30 merkkiä pitkä';
+        if (substr($this->koordinaatit, 1, 1) == '9' && substr($this->koordinaatit, 2, 1) != '0') {
+            $errors[] = 'Leveysaste ei ole kelvollinen';
         }
-        
-        $paikka = Mittauspaikka::findByKoordinaatit($this->koordinaatit);
-        
-        if ($paikka) {
-            $errors[] = "Koordinaatteja vastaava mittauspaikka on jo olemassa";
+        if (substr($this->koordinaatit, 1, 1) == '9' && substr($this->koordinaatit, 4, 5) != '00000') {
+            $errors[] = 'Leveysaste ei ole kelvollinen';
+        }
+        if (substr($this->koordinaatit, 11, 1) == '8' && substr($this->koordinaatit, 12, 1) != '0') {
+            $errors[] = 'Pituusaste ei ole kelvollinen';
+        }if (substr($this->koordinaatit, 11, 1) == '8' && substr($this->koordinaatit, 14, 5) != '00000') {
+            $errors[] = 'Pituusaste ei ole kelvollinen';
         }
         return $errors;
     }

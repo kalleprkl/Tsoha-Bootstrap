@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
 <h1>{{mittauspaikka.nimi}} - {{vesisto.nimi}} - {{vesisto.paikkakunta}}</h1>
 
 <p>
@@ -22,7 +29,7 @@
     </thead>
 
     <tbody>
-        {% for raportti in raportit%}
+        {% for raportti in raportit %}
         <tr>
             <td><a href="{{base_path}}/raportit/{{raportti.tutkimus_id}}">{{raportti.pvm}}</a></td>
             <td><a href="{{base_path}}/tutkijat/{{raportti.tutkija}}">{{raportti.nimi}}</a></td>

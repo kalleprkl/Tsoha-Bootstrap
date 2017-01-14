@@ -21,7 +21,9 @@ class RaporttiController extends BaseController {
         $raportti = Raportti::find($tutkimus_id);
         $mittauspaikka = Mittauspaikka::findByKoordinaatit($raportti->sijainti);
         $vesisto = Vesisto::find($mittauspaikka->kohde);
-        View::make('raportit/raportti.html', array('raportti' => $raportti, 'mittauspaikka' => $mittauspaikka, 'vesisto' => $vesisto));
+        $naytteet = Nayte::findByRaportti($tutkimus_id);
+        
+        View::make('raportit/raportti.html', array('raportti' => $raportti, 'mittauspaikka' => $mittauspaikka, 'vesisto' => $vesisto, 'naytteet' => $naytteet));
     }
 
     public static function uusi($koordinaatit) {
@@ -49,14 +51,15 @@ class RaporttiController extends BaseController {
 
         $uusi = new Raportti($attributes);
 
-        $errors = array();
+        $errors = $uusi->errors();
 
         if (count($errors) == 0) {
             $uusi->save();
-//            Redirect::to('/vesistot/' . $uusi->sijainti. '/', array('message' => 'Uusi mittauspaikka lisätty'));
+            Redirect::to('/vesistot/' . $uusi->sijainti. '/raportit', array('message' => 'Uusi raportti lisätty'));
         } else {
-            $vesisto = array('kohde_id' => $params['kohde']);
-            View::make('mittauspaikka/uusi.html', array('errors' => $errors, 'attributes' => $attributes, 'vesisto' => $vesisto));
+            $tutkija = array('tutkija_id' => $attributes['tutkija']);
+            $mittauspaikka = array('koordinaatit' => $attributes['sijainti']);
+            View::make('raportit/uusi.html', array('errors' => $errors, 'attributes' => $attributes, 'tutkija' => $tutkija, 'mittauspaikka' => $mittauspaikka));
         }
     }
 
@@ -70,19 +73,19 @@ class RaporttiController extends BaseController {
         
         $raportti = new Raportti($params);
         
-        $errors = array();
+        $errors = $raportti->errors();
         
-        if (count($errors == 0)) {
+        if (count($errors) == 0) {
             $raportti->update();
             Redirect::to('/raportit/' .$raportti->tutkimus_id, array('message' => 'Raportin tiedot päivitetty'));
         } else {
-            
+            View::make('raportit/muokkaa.html', array('errors' => $errors, 'raportti' => $raportti));
         }
     }
     
     public function poista($tutkimus_id) {
         $raportti = Raportti::find($tutkimus_id);
         $raportti->delete();
-        Redirect::to('/mittauspaikat/' .$raportti->sijainti, array('message' => 'Raportti poistettu'));
+        Redirect::to('/vesistot/' .$raportti->sijainti. '/raportit', array('message' => 'Raportti poistettu'));
     }
 }
